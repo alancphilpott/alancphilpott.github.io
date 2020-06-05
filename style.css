@@ -12,12 +12,14 @@ body {
 }
 
 header {
-    font-size: 1.5em;
-    min-height: 20vh;
+    font-size: 2em;
+    padding: 1.5rem 0;
+    /* min-height: 20vh; */
 }
 
 header,
 form {
+    padding: 2rem 0;
     display: flex;
     justify-content: center;
     align-content: center;
@@ -80,4 +82,8 @@ form button:hover {
 
 .complete-todo {
     background: rgb(73, 204, 73);
+}
+
+.todo-item {
+    padding: 0rem 0.5rem;
 }
