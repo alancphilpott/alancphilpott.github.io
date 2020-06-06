@@ -67,18 +67,15 @@ function filterTodo(event) {
     todos.forEach((todo) => {
         switch (event.target.value) {
             case "all":
-                console.log("all");
                 todo.style.display = "flex";
                 break;
             case "completed":
-                console.log("completed");
-                if (todo.classList.contains("completed"))
+                if (todo.classList.contains("complete"))
                     todo.style.display = "flex";
                 else todo.style.display = "none";
                 break;
-            case "uncompleted":
-                console.log("uncompleted");
-                if (!todo.classList.contains("completed"))
+            case "uncomplete":
+                if (!todo.classList.contains("complete"))
                     todo.style.display = "flex";
                 else todo.style.display = "none";
                 break;
