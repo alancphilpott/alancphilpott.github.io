@@ -49,7 +49,10 @@ function checkDelete(event) {
 
     switch (todoChild.classList[0]) {
         case "delete-todo":
-            todo.remove();
+            todo.classList.add("fall");
+            todo.addEventListener("transitionend", () => {
+                todo.remove();
+            });
             break;
         case "complete-todo":
             todo.classList.toggle("complete");
