@@ -55,6 +55,7 @@ function checkDelete(event) {
     switch (todoChild.classList[0]) {
         case "delete-todo":
             todo.classList.add("fall");
+            deleteLocalTodo(todo);
             todo.addEventListener("transitionend", () => {
                 todo.remove();
             });
@@ -135,4 +136,18 @@ function getLocalTodos() {
         // Append todoDiv to List
         todoList.appendChild(todoDiv);
     });
+}
+
+function deleteLocalTodo(todo) {
+    let todos = localStorage.getItem("todos");
+
+    if (!todos) todos = [];
+    else todos = JSON.parse(todos);
+
+    const todoText = todo.childNodes[0].innerText;
+    todos = todos.filter((todo) => {
+        return todo !== todoText;
+    });
+
+    localStorage.setItem("todos", JSON.stringify(todos));
 }
