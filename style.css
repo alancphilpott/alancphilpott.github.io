@@ -139,3 +139,8 @@ select {
     background: white;
     color: #ff6f47;
 }
+
+select:-moz-focusring {
+    color: transparent;
+    text-shadow: 0 0 0 #ff6f47;
+}
