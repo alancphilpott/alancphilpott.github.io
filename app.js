@@ -5,6 +5,7 @@ const todoList = document.querySelector(".todo-list");
 const filterOption = document.querySelector(".filter-todo");
 
 // Event Listeners
+document.addEventListener("DOMContentLoaded", getLocalTodos);
 todoButton.addEventListener("click", addTodo);
 todoList.addEventListener("click", checkDelete);
 filterOption.addEventListener("click", filterTodo);
@@ -23,6 +24,8 @@ function addTodo(event) {
     newTodo.innerText = todoInput.value;
     newTodo.classList.add("todo-item");
     todoDiv.appendChild(newTodo);
+    // Save to Local Storage
+    saveLocalTodo(todoInput.value);
 
     // Checkmark Button
     const checkmarkBtn = document.createElement("button");
@@ -80,5 +83,56 @@ function filterTodo(event) {
                 else todo.style.display = "none";
                 break;
         }
+    });
+}
+
+function saveLocalTodo(todo) {
+    // Check For Existing Todos
+    let todos = localStorage.getItem("todos");
+
+    // If Nothing Exists - Create Array
+    if (!todos) todos = [];
+    // If Exists - Retrieve Existing
+    else todos = JSON.parse(todos);
+
+    // Add The New Todo to Array
+    todos.push(todo);
+    // Update Local Storage
+    localStorage.setItem("todos", JSON.stringify(todos));
+}
+
+function getLocalTodos() {
+    let todos = localStorage.getItem("todos");
+
+    if (!todos) todos = [];
+    else todos = JSON.parse(todos);
+
+    todos.forEach((todo) => {
+        // Todo Item Wrapper Div
+        const todoDiv = document.createElement("div");
+        todoDiv.classList.add("todo");
+
+        // New Todo Item
+        const newTodo = document.createElement("li");
+        newTodo.innerText = todo;
+        newTodo.classList.add("todo-item");
+        todoDiv.appendChild(newTodo);
+
+        // Checkmark Button
+        const checkmarkBtn = document.createElement("button");
+        checkmarkIcon = "<i class='fas fa-check'></i>";
+        checkmarkBtn.innerHTML = checkmarkIcon;
+        checkmarkBtn.classList.add("complete-todo");
+        todoDiv.appendChild(checkmarkBtn);
+
+        // Delete Button
+        const deleteBtn = document.createElement("button");
+        checkmarkIcon = "<i class='fas fa-trash'></i>";
+        deleteBtn.innerHTML = checkmarkIcon;
+        deleteBtn.classList.add("delete-todo");
+        todoDiv.appendChild(deleteBtn);
+
+        // Append todoDiv to List
+        todoList.appendChild(todoDiv);
     });
 }
