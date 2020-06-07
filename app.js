@@ -88,25 +88,14 @@ function filterTodo(event) {
 }
 
 function saveLocalTodo(todo) {
-    // Check For Existing Todos
-    let todos = localStorage.getItem("todos");
+    let todos = checkLocalStorage();
 
-    // If Nothing Exists - Create Array
-    if (!todos) todos = [];
-    // If Exists - Retrieve Existing
-    else todos = JSON.parse(todos);
-
-    // Add The New Todo to Array
     todos.push(todo);
-    // Update Local Storage
     localStorage.setItem("todos", JSON.stringify(todos));
 }
 
 function getLocalTodos() {
-    let todos = localStorage.getItem("todos");
-
-    if (!todos) todos = [];
-    else todos = JSON.parse(todos);
+    const todos = checkLocalStorage();
 
     todos.forEach((todo) => {
         // Todo Item Wrapper Div
@@ -139,10 +128,7 @@ function getLocalTodos() {
 }
 
 function deleteLocalTodo(todo) {
-    let todos = localStorage.getItem("todos");
-
-    if (!todos) todos = [];
-    else todos = JSON.parse(todos);
+    let todos = checkLocalStorage();
 
     const todoText = todo.childNodes[0].innerText;
     todos = todos.filter((todo) => {
@@ -150,4 +136,11 @@ function deleteLocalTodo(todo) {
     });
 
     localStorage.setItem("todos", JSON.stringify(todos));
+}
+
+function checkLocalStorage() {
+    // Check for Existing Todos
+    const todos = localStorage.getItem("todos");
+    // Return Todos If True | Empty Array
+    return todos ? JSON.parse(todos) : [];
 }
