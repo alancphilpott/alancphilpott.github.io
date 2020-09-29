@@ -2,7 +2,7 @@
 <br />
 <p align="center">
   <a href="https://github.com/alancphilpott/simplist">
-    <img src="https://i.imgur.com/FFh1DEV.png" alt="Logo" width="500" height="500">
+    <img src="https://i.imgur.com/FFh1DEV.png" alt="Logo" width="750" height="500">
   </a>
 
   <h3 align="center">Simplist</h3>
