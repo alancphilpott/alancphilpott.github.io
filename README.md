@@ -42,7 +42,7 @@ Early project of mine used to practice and demonstrate modifying the browser DOM
 
 -   Element Selection
 -   Event Listeners
--   Appending Children Elements
+-   Appending Child Elements
 -   Add/Remove CSS Classes
 -   Browser Local Storage
 
